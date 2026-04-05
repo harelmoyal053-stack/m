@@ -1,47 +1,72 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #1FAF5A;
-  --primary-light: #4BE38A;
-  --bg: #F5F5F5;
-  --text: #222222;
+  --bg:        #C4D9E8;
+  --surface:   #FFFFFF;
+  --dark:      #1A2332;
+  --dark2:     #0D1520;
+  --red:       #F44336;
+  --blue:      #1565C0;
+  --yellow:    #FFC107;
+  --green:     #00BFA5;
+  --orange:    #FF6D00;
+  --purple:    #7C3AED;
+  --pink:      #E91E8C;
 }
 
-html {
-  direction: rtl;
-  scroll-behavior: smooth;
-}
+html { direction: rtl; scroll-behavior: smooth; }
 
 body {
-  font-family: 'Heebo', 'Assistant', sans-serif;
-  background: #F5F5F5;
-  color: #222222;
+  font-family: 'Heebo', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
   direction: rtl;
+  min-height: 100vh;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 3px; }
-::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #dce8f0; }
+::-webkit-scrollbar-thumb { background: #8AAFC8; border-radius: 99px; }
 
-/* Winner glow pulse */
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(31,175,90,0.4), 0 8px 32px rgba(31,175,90,0.15); }
-  50%       { box-shadow: 0 0 0 6px rgba(31,175,90,0.1), 0 8px 32px rgba(31,175,90,0.25); }
+/* ---- Flat card ---- */
+.flat-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 4px 4px 0px rgba(26,35,50,0.10);
+  border: 1.5px solid rgba(26,35,50,0.07);
 }
-.winner-glow { animation: glow-pulse 2s ease-in-out infinite; }
 
-/* Tip banner glow */
+/* ---- Winner pulse ---- */
+@keyframes winner-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(0,191,165,0.5), 4px 4px 0 rgba(26,35,50,0.12); }
+  60%      { box-shadow: 0 0 0 10px rgba(0,191,165,0), 4px 4px 0 rgba(26,35,50,0.12); }
+}
+.winner-pulse { animation: winner-pulse 2s ease-in-out infinite; }
+
+/* ---- Tip glow ---- */
 @keyframes tip-glow {
-  0%, 100% { box-shadow: 0 0 16px rgba(251,191,36,0.3); }
-  50%       { box-shadow: 0 0 32px rgba(251,191,36,0.6); }
+  0%,100% { box-shadow: 4px 4px 0 rgba(255,193,7,0.5); }
+  50%      { box-shadow: 4px 4px 0 rgba(255,193,7,0.9), 0 0 30px rgba(255,193,7,0.3); }
 }
 .tip-glow { animation: tip-glow 2.5s ease-in-out infinite; }
 
-/* Badge pulse */
+/* ---- Badge bounce ---- */
 @keyframes badge-bounce {
-  0%, 100% { transform: scale(1) rotate(-2deg); }
-  50%       { transform: scale(1.08) rotate(2deg); }
+  0%,100% { transform: translateY(0) rotate(-2deg); }
+  50%      { transform: translateY(-4px) rotate(2deg); }
 }
-.badge-bounce { animation: badge-bounce 1.8s ease-in-out infinite; }
+.badge-bounce { animation: badge-bounce 1.6s ease-in-out infinite; }
+
+/* ---- Float ---- */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.float { animation: float 3s ease-in-out infinite; }
+
+/* ---- Shape decorations ---- */
+.shape-circle {
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+}
