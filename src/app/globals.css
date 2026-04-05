@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #1FAF5A;
+  --primary-light: #4BE38A;
+  --bg: #F5F5F5;
+  --text: #222222;
+}
+
+html {
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Heebo', 'Assistant', sans-serif;
+  background: #F5F5F5;
+  color: #222222;
+  direction: rtl;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+/* Winner glow pulse */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(31,175,90,0.4), 0 8px 32px rgba(31,175,90,0.15); }
+  50%       { box-shadow: 0 0 0 6px rgba(31,175,90,0.1), 0 8px 32px rgba(31,175,90,0.25); }
+}
+.winner-glow { animation: glow-pulse 2s ease-in-out infinite; }
+
+/* Tip banner glow */
+@keyframes tip-glow {
+  0%, 100% { box-shadow: 0 0 16px rgba(251,191,36,0.3); }
+  50%       { box-shadow: 0 0 32px rgba(251,191,36,0.6); }
+}
+.tip-glow { animation: tip-glow 2.5s ease-in-out infinite; }
+
+/* Badge pulse */
+@keyframes badge-bounce {
+  0%, 100% { transform: scale(1) rotate(-2deg); }
+  50%       { transform: scale(1.08) rotate(2deg); }
+}
+.badge-bounce { animation: badge-bounce 1.8s ease-in-out infinite; }
