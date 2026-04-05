@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SmartBasket | השוואת מחירים",
-  description: "בנה סל קניות וקבל את המחיר הכי זול",
+  title: "StockIL | מנתח המניות החכם",
+  description: "הבן כל מניה בעברית פשוטה — נתונים, ניתוח, ותובנות ברורות",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -12,11 +12,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
       </head>
-      <body className="antialiased" style={{ background: "var(--bg)" }}>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
