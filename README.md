@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⭐ ניחושי האלופות
 
-## Getting Started
+משחק ניחושים סגור לחברים על ליגת האלופות, בסגנון משחק הניחושים של 365 במונדיאל. האפליקציה בנויה לטלפון ובעברית.
 
-First, run the development server:
+## איך משחקים
+- לפני כל משחק מנחשים תוצאה. הניחוש ננעל בשריקת הפתיחה, ורק אז הניחושים של כולם נחשפים.
+- הניקוד נקבע לפי תוצאת 90 הדקות.
 
+| שלב | בול | כיוון | ✨ אנדרדוג |
+|---|---|---|---|
+| שלב הליגה | 3 | 1 | +1 |
+| פלייאוף | 4 | 2 | +2 |
+| שמינית גמר | 4 | 2 | +2 |
+| רבע גמר | 5 | 2 | +2 |
+| חצי גמר | 6 | 3 | +2 |
+| גמר | 8 | 4 | +2 |
+
+- **אנדרדוג**: הקבוצה עם היחס הגבוה יותר אצל סוכנויות ההימורים. מי שניחש שהיא תנצח, והיא ניצחה, מקבל את הבונוס בנוסף לניקוד הרגיל. המנהל יכול לשנות את האנדרדוג ידנית.
+- **ניחושי בונוס**: האלופה שווה 10 נק׳ ומלך השערים שווה 7 נק׳. הניחושים ננעלים בתחילת הנוקאאוט, או בדדליין שהמנהל קובע.
+
+כל המספרים מוגדרים בקובץ `src/lib/scoring.ts`.
+
+## נתונים אוטומטיים
+- **תוצאות ולוח משחקים**: מ-[football-data.org](https://www.football-data.org). התוכנית החינמית כוללת את ליגת האלופות.
+- **יחסים (לאנדרדוג)**: מ-[The Odds API](https://the-odds-api.com). התוכנית החינמית נותנת 500 קריאות בחודש, והאפליקציה משתמשת בערך ב-120.
+- הסנכרון רץ ברקע כשמישהו נכנס לאפליקציה: כל דקה בזמן משחקים וכל 20 דקות בשאר הזמן. אין צורך ב-cron.
+- אחרי הגמר, האלופה ומלך השערים נקבעים אוטומטית.
+
+## העלאה לאוויר (Vercel + Turso, חינם)
+1. **מפתחות API**: נרשמים ב-football-data.org וב-the-odds-api.com.
+2. **מסד נתונים**: יוצרים DB ב-[Turso](https://turso.tech) ולוקחים את ה-URL (`libsql://...`) ואת ה-token.
+3. **Vercel**: מייבאים את הריפו ב-[vercel.com/new](https://vercel.com/new) ומגדירים את משתני הסביבה מתוך `.env.example`.
+4. **מנהל**: נכנסים לאתר ונרשמים. המשתמש הראשון הופך למנהל.
+5. **קוד הצטרפות**: במסך הניהול (⚙️) מגדירים קוד ושולחים לחברים את הקישור ואת הקוד.
+6. **התקנה בטלפון**: בטלפון בוחרים "הוסף למסך הבית", והאפליקציה מתנהגת כמו אפליקציה רגילה.
+
+## פיתוח מקומי
 ```bash
+npm install
+cp .env.example .env.local      # למלא מפתחות
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# לבדיקת הממשק בלי מפתחות:
+DATABASE_URL=file:demo.db npm run seed:demo
+DATABASE_URL=file:demo.db npm run dev   # כניסה: admin / demo1234
+
+npm test        # בדיקות ניקוד, טבלה והתאמת שמות קבוצות
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
